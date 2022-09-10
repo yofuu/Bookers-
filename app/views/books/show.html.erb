@@ -1,22 +1,16 @@
+<% if flash[:notice] %>
+ <div class="alert alert-primary" role="aalert">
+   <%= notice %>
+ </div>
+<% end %>
+
 <h2>タイトル</h2>
 <p><%= @books.title %></p>
 
 <h2>本文</h2>
 <p><%= @books.body %></p>
 
-<% if flash[:notice] %>
- <div class="alert alert-primary" role="aalert">
-   <%= notice %>
- </div>
-<% end %>
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
-<p>
-  <strong>Content:</strong>
-  <%= @article.content %>
-</p>
 
-<%= link_to "編集", edit_books_path(@books.id) %>
-<%= link_to "削除", books_path(@books.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+
+<%= link_to "Edit", edit_book_path(@books.id) %>
+<%= link_to "Back", book_path(@books.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

@@ -4,17 +4,18 @@ class BooksController < ApplicationController
   end
 
   def create
-    @books =Book.new(books_params)
-    redirect_to new_book_path(books.id)
+    @book =Book.new(books_params)
+
     if @book.save
-      redirect_to admin_book_path(@book), notice:"Book was successfully created."
+      redirect_to book_path(@book), notice:"Book was successfully created."
     else
-      render :new
+      render :index
     end
   end
 
   def index
     @books = Book.all
+    @book = Book.new
   end
 
   def show
@@ -29,9 +30,9 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     if @book.update(book_params)
     redirect_to admin_book_path(@book.id), notice:"Book was successfully created."
-   else
+    else
     render:edit
-   end
+    end
   end
 
   def destroy
@@ -44,6 +45,6 @@ class BooksController < ApplicationController
 
   private
   def books_params
-    params.require(:books).permit(:title, :body)
+    params.require(:book).permit(:title, :body)
   end
 end
